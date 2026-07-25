@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>無料適性診断コンサルティングツール</title>
   <style>
-    /* 全体基調：高級感のあるダークネイビーとグレー */
     body {
       font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
       background-color: #f4f6f9;
@@ -14,8 +13,6 @@
       margin: 0;
       -webkit-font-smoothing: antialiased;
     }
-    
-    /* 診断カード外装 */
     .quiz-card {
       background: #ffffff;
       border-radius: 6px;
@@ -27,13 +24,11 @@
       box-sizing: border-box;
       position: relative;
     }
-    
     .card-header {
       border-bottom: 2px solid #1e3a8a;
       padding-bottom: 12px;
       margin-bottom: 20px;
     }
-
     .card-title-sub {
       font-size: 0.75rem;
       color: #1e3a8a;
@@ -42,7 +37,6 @@
       text-transform: uppercase;
       margin-bottom: 4px;
     }
-
     .card-title-main {
       font-size: 1.1rem;
       color: #0f172a;
@@ -50,15 +44,12 @@
       margin: 0;
       line-height: 1.4;
     }
-
-    /* バッジ・タグ装飾 */
     .feature-badge-group {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin: 14px 0;
     }
-
     .feature-badge {
       background: #f1f5f9;
       color: #1e3a8a;
@@ -68,15 +59,13 @@
       padding: 4px 8px;
       border-radius: 3px;
     }
-    
-    /* プログレスインジケーター */
     .progress-wrapper {
       background: #e2e8f0;
       height: 4px;
       border-radius: 2px;
       margin-bottom: 24px;
       overflow: hidden;
-      display: none; /* 初期状態（スタート画面）では非表示 */
+      display: none;
     }
     .progress {
       background: #1e3a8a;
@@ -84,8 +73,6 @@
       width: 0%;
       transition: width 0.4s ease-in-out;
     }
-    
-    /* ボタン類 */
     .btn {
       display: block;
       width: 100%;
@@ -104,15 +91,12 @@
       box-sizing: border-box;
       line-height: 1.4;
     }
-
     .btn:hover, .btn:active {
       background: #f8fafc;
       border-color: #1e3a8a;
       border-left-color: #1e3a8a;
       color: #0f172a;
     }
-
-    /* メインアクションボタン（スタート／公式遷移） */
     .primary-btn {
       display: block;
       width: 100%;
@@ -132,13 +116,10 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
     .primary-btn:active {
       opacity: 0.95;
       transform: translateY(1px);
     }
-
-    /* スタート画面専用の説明ボックス */
     .intro-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -149,27 +130,21 @@
       line-height: 1.6;
       color: #334155;
     }
-
     .intro-list {
       margin: 8px 0 0 0;
       padding-left: 18px;
     }
-
     .intro-list li {
       margin-bottom: 4px;
     }
-
-    /* 診断結果エリア */
     .result {
       display: none;
       animation: fadeIn 0.4s ease-in-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .result-badge {
       display: inline-block;
       background: #1e3a8a;
@@ -181,7 +156,6 @@
       border-radius: 2px;
       margin-bottom: 12px;
     }
-
     .result-title {
       font-size: 1.2rem;
       font-weight: 700;
@@ -190,7 +164,6 @@
       border-left: 3px solid #1e3a8a;
       padding-left: 10px;
     }
-    
     .result-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -201,7 +174,6 @@
       font-size: 0.95rem;
       color: #334155;
     }
-
     .result-box-title {
       font-weight: 700;
       color: #0f172a;
@@ -211,7 +183,6 @@
       border-bottom: 1px dashed #cbd5e1;
       padding-bottom: 6px;
     }
-
     .note-text {
       font-size: 0.75rem;
       color: #64748b;
@@ -219,7 +190,6 @@
       margin-top: 8px;
       line-height: 1.4;
     }
-    
     .restart-btn {
       display: block;
       margin: 16px auto 0 auto;
@@ -235,18 +205,15 @@
 <body>
 
 <div class="quiz-card">
-  <!-- ヘッダーデザイン -->
   <div class="card-header">
     <div class="card-title-sub">LEGAL & FINANCIAL CONSULTING</div>
     <div class="card-title-main">安心の法廷・借金問題 相談先1分診断</div>
   </div>
 
-  <!-- 進捗バー -->
   <div class="progress-wrapper" id="progress-wrapper">
     <div id="progress" class="progress"></div>
   </div>
 
-  <!-- START画面 -->
   <div id="q-start">
     <div class="feature-badge-group">
       <span class="feature-badge">完全無料</span>
@@ -254,7 +221,6 @@
       <span class="feature-badge">所要時間 約1分</span>
       <span class="feature-badge">匿名診断OK</span>
     </div>
-
     <div class="intro-box">
       <strong>あなたに最適な「無料相談窓口」を判定します</strong>
       <p style="margin: 6px 0 0 0;">個人情報の入力は不要です。画面の選択肢を順番にポチポチと選ぶだけで、あなたの状況に一番適した大手・専門機関の「無料カウンセリング窓口」をご案内いたします。</p>
@@ -264,12 +230,10 @@
         <li>どこに相談すべきか分からない方</li>
       </ul>
     </div>
-
     <button class="primary-btn" onclick="startQuiz()">無料で診断をはじめる（1分）</button>
     <div class="note-text">※当診断による費用発生や強引な勧誘は一切ありません。</div>
   </div>
 
-  <!-- Q1 -->
   <div id="q1" style="display:none;">
     <div class="card-title-sub">STEP 1 / 4</div>
     <h2 class="card-title-main">現在の負債・ご相談内容の規模について</h2>
@@ -278,7 +242,6 @@
     <button class="btn" onclick="next(1, 'histoire', 100)">200万円以上、または緊急を要するトラブル</button>
   </div>
 
-  <!-- Q2 -->
   <div id="q2" style="display:none;">
     <div class="card-title-sub">STEP 2 / 4</div>
     <h2 class="card-title-main">今回のご相談において最優先する項目</h2>
@@ -287,7 +250,6 @@
     <button class="btn" onclick="next(2, 'histoire', 75)">督促の一時停止・トラブルの即時介入対応</button>
   </div>
 
-  <!-- Q3 -->
   <div id="q3" style="display:none;">
     <div class="card-title-sub">STEP 3 / 4</div>
     <h2 class="card-title-main">ご希望される相談受付の体制</h2>
@@ -296,28 +258,23 @@
     <button class="btn" onclick="next(3, 'histoire', 100)">緊急性の高い問題に対する即日・迅速な受任体制</button>
   </div>
 
-  <!-- Q4 -->
   <div id="q4" style="display:none;">
     <div class="card-title-sub">STEP 4 / 4</div>
     <h2 class="card-title-main">現在のご就労状況・収入形態</h2>
-    <button class="btn" onclick="showResult()">給与所得者（会社員・パート・アルバイト等）</button>
-    <button class="btn" onclick="showResult()">無収入・家事従事者・休職中</button>
-    <button class="btn" onclick="showResult()">個人事業主・フリーランス・経営者</button>
+    <button class="btn" onclick="nextQ4('earth')">給与所得者（会社員・パート・アルバイト等）</button>
+    <button class="btn" onclick="nextQ4('elife')">無収入・家事従事者・休職中</button>
+    <button class="btn" onclick="nextQ4('histoire')">個人事業主・フリーランス・経営者</button>
   </div>
 
-  <!-- 結果画面 -->
   <div id="result" class="result">
     <div class="result-badge">DIAGNOSIS COMPLETE</div>
     <div class="result-title">最適化された相談窓口のご案内</div>
-    
     <div class="result-box">
       <span class="result-box-title" id="result-name"></span>
       <div id="result-desc"></div>
     </div>
-    
     <a id="result-link" href="#" class="primary-btn" target="_blank">公式無料カウンセリング窓口へ</a>
     <div class="note-text">※完全秘密厳守。初回の適性診断およびご相談は無料です。</div>
-    
     <button class="restart-btn" onclick="resetQuiz()">診断を最初からやり直す</button>
   </div>
 </div>
@@ -339,6 +296,11 @@
     document.getElementById('progress').style.width = progressVal + '%';
   }
 
+  function nextQ4(type) {
+    if(type) scores[type] += 1;
+    showResult();
+  }
+
   function showResult() {
     document.getElementById('q4').style.display = 'none';
     document.getElementById('progress').style.width = '100%';
@@ -352,7 +314,6 @@
     if (scores.elife >= scores.earth && scores.elife >= scores.histoire) best = 'elife';
     if (scores.histoire > scores.earth && scores.histoire > scores.elife) best = 'histoire';
 
-    // ★アフィリエイトURLの設定箇所
     if(best === 'earth') {
       name.innerText = "推奨窓口：アース司法書士事務所";
       desc.innerHTML = "丁寧なヒアリングと実績に定評がある法律事務所です。個別の状況に応じた最適な再建プランを提示します。";
@@ -379,4 +340,3 @@
 
 </body>
 </html>
-　
