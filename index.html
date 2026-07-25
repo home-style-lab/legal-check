@@ -1,14 +1,110 @@
-// ★アフィリエイトURLの設定箇所
-    if(best === 'earth') {
-      name.innerText = "推奨窓口：アース法律事務所";
-      desc.innerHTML = "丁寧なヒアリングと実績に定評がある法律事務所です。個別の状況に応じた最適な再建プランを提示します。";
-      link.href = "YOUR_EARTH_AFFILIATE_URL_HERE"; // ←ここ！
-    } else if(best === 'elife') {
-      name.innerText = "推奨窓口：イーライフ";
-      desc.innerHTML = "プライバシー保護体制が強みです。周囲への発覚を防ぎ、スマートフォンからスムーズな手続きを行えます。";
-      link.href = "YOUR_ELIFE_AFFILIATE_URL_HERE"; // ←ここ！
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>借金・お金の悩み 1分ぴったり診断</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f6f8; margin: 0; padding: 20px; color: #333; }
+    .card { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    h2 { font-size: 1.2rem; text-align: center; color: #2c3e50; line-height: 1.5; }
+    .btn { display: block; width: 100%; padding: 14px; margin: 10px 0; background: #007bff; color: #fff; text-align: center; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; text-decoration: none; box-sizing: border-box; }
+    .btn:hover { background: #0056b3; }
+    .btn-action { background: #28a745; font-weight: bold; font-size: 1.1rem; }
+    .btn-action:hover { background: #218838; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- スタート画面 -->
+  <div id="start-screen">
+    <h2>1分でわかる！<br>あなたに最適な「お金の相談窓口」診断</h2>
+    <p style="text-align: center; font-size: 0.9rem; color: #666;">匿名・無料で誰にもバレずにチェックできます。</p>
+    <button class="btn btn-action" onclick="startQuiz()">診断をはじめる</button>
+  </div>
+
+  <!-- 質問画面 -->
+  <div id="quiz-screen" class="hidden">
+    <h2 id="question-text"></h2>
+    <div id="options"></div>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-screen" class="hidden">
+    <h2>診断結果</h2>
+    <h3 id="office-name" style="color: #007bff; text-align: center;"></h3>
+    <p id="office-desc" style="line-height: 1.6;"></p>
+    <a id="affiliate-link" class="btn btn-action" href="#" target="_blank">無料相談してみる（公式サイト）</a>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    { text: "Q1. 相談したい内容は？", answers: [ { text: "借金の減額・返済の悩み", value: "earth" }, { text: "給料ファクタリング・闇金トラブル", value: "histoire" }, { text: "家族にバレずに解決したい", value: "elife" } ] },
+    { text: "Q2. 一番重視したいポイントは？", answers: [ { text: "実績と安心感", value: "earth" }, { text: "即対応・緊急性", value: "histoire" }, { text: "スマホで完結・秘密厳守", value: "elife" } ] }
+  ];
+
+  let currentQ = 0;
+  let scores = { earth: 0, histoire: 0, elife: 0 };
+
+  function startQuiz() {
+    document.getElementById('start-screen').classList.add('hidden');
+    document.getElementById('quiz-screen').classList.remove('hidden');
+    showQuestion();
+  }
+
+  function showQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('question-text').innerText = q.text;
+    const optDiv = document.getElementById('options');
+    optDiv.innerHTML = '';
+    q.answers.forEach(a => {
+      const btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.innerText = a.text;
+      btn.onclick = () => selectAnswer(a.value);
+      optDiv.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(val) {
+    scores[val]++;
+    currentQ++;
+    if (currentQ < questions.length) {
+      showQuestion();
     } else {
-      name.innerText = "推奨窓口：イストワール";
-      desc.innerHTML = "緊急度の高いトラブルや迅速な介入を要する案件において、極めて高い対応能力を有する窓口です。";
-      link.href = "YOUR_HISTOIRE_AFFILIATE_URL_HERE"; // ←ここ！
+      showResult();
     }
+  }
+
+  function showResult() {
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('result-screen').classList.remove('hidden');
+
+    let best = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    
+    const name = document.getElementById('office-name');
+    const desc = document.getElementById('office-desc');
+    const link = document.getElementById('affiliate-link');
+
+    // ★ アフィリエイトURLの設定箇所（ご自身のアフィリンクに差し替えてね！）
+    if (best === 'earth') {
+      name.innerText = "アース法律事務所";
+      desc.innerHTML = "丁寧なヒアリングと実績に定評がある法律事務所です。個別の状況に応じた最適な再建プランを提示します。";
+      link.href = "YOUR_EARTH_AFFILIATE_URL_HERE"; // ←ここにアースのリンク
+    } else if (best === 'elife') {
+      name.innerText = "イーライフ";
+      desc.innerHTML = "プライバシー保護体制が強みです。周囲への発覚を防ぎ、スマートフォンからスムーズな手続きを行えます。";
+      link.href = "YOUR_ELIFE_AFFILIATE_URL_HERE"; // ←ここにイーライフのリンク
+    } else {
+      name.innerText = "イストワール";
+      desc.innerHTML = "緊急度の高いトラブルや迅速な介入を要する案件において、極めて高い対応能力を有する窓口です。";
+      link.href = "YOUR_HISTOIRE_AFFILIATE_URL_HERE"; // ←ここにイストワールのリンク
+    }
+  }
+</script>
+
+</body>
+</html>
